@@ -17,6 +17,9 @@ function setup() {
 function draw() {
   background(250);
   
+  fill(255, 204, 0);
+  plane(505);
+  
   normalMaterial();
   
   //translate(0,0,mouseX);
@@ -33,25 +36,25 @@ function draw() {
         );
   
   push();
-  translate(0, -230, 0);
-  box(500, 10, 50);
+  translate(0, -250, 0);
+  box(510, 10, 50);
   pop();
   
   push();
-  translate(0, 230, 0);
-  box(500, 10, 50);
+  translate(0, 250, 0);
+  box(510, 10, 50);
   pop();
   
   push();
-  translate(230, 0, 0);
+  translate(250, 0, 0);
   rotateZ(PI / 2);
-  box(500, 10, 50);
+  box(510, 10, 50);
   pop();
   
   push();
-  translate(-230, 0, 0);
+  translate(-250, 0, 0);
   rotate(PI / 2);
-  box(500, 10, 50);
+  box(510, 10, 50);
   pop();
   
   translate(x, y, z);
