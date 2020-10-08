@@ -1,0 +1,58 @@
+let x = 0;
+let y = 0;
+let z = 0;
+let angle = 0;
+
+function setup() {
+  createCanvas(512, 512, WEBGL);
+  //fill(255, 0, 0);
+  //rectMode(CENTER);
+}
+
+function draw() {
+  background(250);
+  
+  normalMaterial();
+  
+  translate(x, y, z);
+  push();
+  // rotateZ(frameCount * 0.01);
+  // rotateX(frameCount * 0.01);
+  // rotateY(frameCount * 0.01);
+  
+    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle -= .05;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle += .05;
+    }
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle += .05;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle -= .05;
+    }
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    //y -= 5;
+    //X=distance*cos(angle)
+    y -= 5 * sin(angle);
+    x -= 5 * cos(angle);
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    //y += 5;
+    y += 5 * sin(angle);
+    x += 5 * cos(angle);
+  }
+
+  rotateZ(angle);
+  
+  box(70, 35, 30);
+  pop();
+}

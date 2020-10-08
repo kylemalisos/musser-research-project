@@ -1,0 +1,77 @@
+let x = 0;
+let y = 0;
+let z = 0;
+let angle = 0;
+const angleDelta = 3;
+const distDelta = 5;
+
+function setup() {
+  createCanvas(512, 512, WEBGL);
+  angleMode(DEGREES);
+  //fill(255, 0, 0);
+  //rectMode(CENTER);
+}
+
+function draw() {
+  background(250);
+  
+  normalMaterial();
+  
+  push();
+  translate(0, -230, 0);
+  box(500, 10, 50);
+  pop();
+  
+  push();
+  translate(0, 230, 0);
+  box(500, 10, 50);
+  pop();
+  
+  push();
+  translate(230, 0, 0);
+  rotateZ(90);
+  box(500, 10, 50);
+  pop();
+  
+  push();
+  translate(-230, 0, 0);
+  rotate(90);
+  box(500, 10, 50);
+  pop();
+  
+  translate(x, y, z);
+  push();
+  
+    if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle -= angleDelta;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle += angleDelta;
+    }
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle += angleDelta;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle -= angleDelta;
+    }
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    y -= distDelta * sin(angle);
+    x -= distDelta * cos(angle);
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    y += distDelta * sin(angle);
+    x += distDelta * cos(angle);
+  }
+
+  rotateZ(angle);
+  
+  box(70, 35, 30);
+  pop();
+}

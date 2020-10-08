@@ -1,0 +1,49 @@
+let x = 300;
+let y = 300;
+let angle = 0;
+
+function setup() {
+  createCanvas(512, 512);
+  fill(255, 0, 0);
+  rectMode(CENTER);
+}
+
+function draw() {
+  clear();
+  background(255);
+  translate(x, y);
+  
+  if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle -= .05;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle += .05;
+    }
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle += .05;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle += .05;
+    }
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    //y -= 5;
+    //X=distance*cos(angle)
+    y -= 5 * sin(angle);
+    x -= 5 * cos(angle);
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    //y += 5;
+    y += 5 * sin(angle);
+    x += 5 * cos(angle);
+  }
+
+  rotate(angle);
+  rect(0, 0, 50, 30);
+}
