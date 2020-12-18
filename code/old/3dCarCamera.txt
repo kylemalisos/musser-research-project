@@ -1,0 +1,95 @@
+let x = 0;
+let y = 0;
+let z = 0;
+let angle = 0;
+const angleDelta = 3;
+const distDelta = 5;
+camAngle = 200;
+camOffset = -40;
+
+function setup() {
+  createCanvas(512, 512, WEBGL);
+  //angleMode(DEGREES);
+  //fill(255, 0, 0);
+  //rectMode(CENTER);
+}
+
+function draw() {
+  background(250);
+  
+  fill(255, 204, 0);
+  plane(505);
+  
+  normalMaterial();
+  
+  //translate(0,0,mouseX);
+  
+  //camera(0, 0, (height / 2) / tan(PI / 6), x, y, z, 0, 1, 0);
+  camera(
+          x - camOffset * cos(angle * (PI / 180)),
+          y - camOffset * sin(angle * (PI / 180)),
+          z + 55,
+          x - camAngle * cos(angle * (PI / 180)),
+          y - camAngle * sin(angle * (PI / 180)),
+          0,
+          0, 0, -1
+        );
+  
+  push();
+  translate(0, -250, 0);
+  box(510, 10, 50);
+  pop();
+  
+  push();
+  translate(0, 250, 0);
+  box(510, 10, 50);
+  pop();
+  
+  push();
+  translate(250, 0, 0);
+  rotateZ(PI / 2);
+  box(510, 10, 50);
+  pop();
+  
+  push();
+  translate(-250, 0, 0);
+  rotate(PI / 2);
+  box(510, 10, 50);
+  pop();
+  
+  translate(x, y, z);
+  push();
+  
+  if (keyIsDown(LEFT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle -= angleDelta;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle += angleDelta;
+    }
+  }
+
+  if (keyIsDown(RIGHT_ARROW)) {
+    if (keyIsDown(UP_ARROW)) {
+      angle += angleDelta;
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+      angle -= angleDelta;
+    }
+  }
+
+  if (keyIsDown(UP_ARROW)) {
+    x -= distDelta * cos(angle * (PI / 180));
+    y -= distDelta * sin(angle * (PI / 180));
+  }
+
+  if (keyIsDown(DOWN_ARROW)) {
+    x += distDelta * cos(angle * (PI / 180));
+    y += distDelta * sin(angle * (PI / 180));
+  }
+
+  rotateZ(angle * (PI / 180));
+  
+  box(70, 35, 30);
+  pop();
+}
